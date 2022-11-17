@@ -1,36 +1,39 @@
 ---
 target:
-  registry: ACCOUNT_ID.dkr.REGION.amazonaws.com
+  registry: ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com
   prefix: "hub/"
 
 repositories:
-  - private_registry: "private-registry-name"
-    name: elasticsearch
-    max_tag_age: 4w
-    ignore_tag:
-      - "*-alpine"
+  # - private_registry: "private-registry-name"
+  #   name: elasticsearch
+  #   max_tag_age: 4w
+  #   ignore_tag:
+  #     - "*-alpine"
 
   - name: redis
-    max_tag_age: 4w
+    max_tag_age: 1w
     match_tag:
-        - "3*"
-        - "4*"
-        - "latest"
+      - "3*"
+      - "4*"
+      - "latest"
     ignore_tag:
       - "*32bit*"
       - "*alpine*"
       - "*nanoserver*"
       - "*windowsservercore*"
-
-  - name: yotpo/resec
-    max_tag_age: 4w
-
-  - name: jippi/hashi-ui
-    max_tag_age: 4w
+  - name: cloudwatch-agent/cloudwatch-agent
+    host: public.ecr.aws
     match_tag:
-      - "v*"
+      - "latest"
+  # - name: yotpo/resec
+  #   max_tag_age: 4w
 
-  - name: kubebuilder/kube-rbac-proxy
-    host: gcr.io
-    match_tag:
-      - "v*"
+  # - name: jippi/hashi-ui
+  #   max_tag_age: 4w
+  #   match_tag:
+  #     - "v*"
+
+  # - name: kubebuilder/kube-rbac-proxy
+  #   host: gcr.io
+  #   match_tag:
+  #     - "v*"
